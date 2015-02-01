@@ -15,15 +15,19 @@ def get_temp():
 def check_serial(sample):
         byte = ser.read()
         if byte == "1":
-                print "\nUltimo valor:"
-                print sample
+                ser.write("\n\rUltimo valor:\n");
+                ser.write("\r"+sample+"\n")
         elif byte == "2":
-                print "\nOs valores armazenados sao:"
+                ser.write("\n\rOs valores armazenados sao:"+"\n")
                 file.seek(0, 0)
                 for line in file:
-                        print line,
+                        ser.write("\r"+line)
+        elif byte == "3":
+                ser.write("\n\rSaindo..."+"\n")
+                file.close()
+                exit()
         elif len(byte) != 0:
-                print "\nComando invalido!"
+                ser.write("\n\rComando invalido!"+"\n")
 
 def get_date():
         return str(datetime.datetime.now())
