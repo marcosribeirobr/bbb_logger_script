@@ -53,7 +53,7 @@ def store_sample(sample):
         
         #main
 if __name__ == "__main__":
-        # Inicializa a serial 115200
+        # Inicializa a serial 115200 @ tty04
         ser = serial.Serial('/dev/ttyO4', 115200, timeout=0.01)
         # Abre arquivo de log
         file = open('log.txt', 'w+')
