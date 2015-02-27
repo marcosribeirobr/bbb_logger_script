@@ -8,7 +8,9 @@ echo ""
 echo "            Logger de temperatura."
 echo ""
 echo "Configurando perifericos..."
+# Adiciona periferico AD
 echo BB-ADC > /sys/devices/bone_capemgr.*/slots
+# Adiciona periferico UART
 echo BB-UART4 > /sys/devices/bone_capemgr.*/slots
 echo "Perifericos configurados..."
 echo ""
@@ -20,9 +22,11 @@ until [ "$selection" = "nao" ]; do
                 "sim" )
                         echo "Entre com o data (YYYY-MM-DD):"
                         read data
+                        # Armazena a data informada em date (-s seta)
                         date -s $data
                         echo "Entre com a hora (HH:MM:SS):"
                         read hora
+                        # Armazena a hora informada em data
                         date -s $hora
                         break
                         ;;
@@ -38,6 +42,7 @@ echo "1 - Faz Leitura atual."
 echo "2 - Envia o log pela serial."
 echo "3 - Encerra script Python."
 echo ""
+# Chama script python
 python logger.py
 echo "Script Python finalizado"
 echo ""
