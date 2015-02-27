@@ -22,24 +22,24 @@ def check_serial(sample):
         byte = ser.read()
         if byte == "1":
                 # Apresenta o ultimo amostra
-                ser.write("\n\rUltimo valor:\n");
-                ser.write("\r"+sample+"\n")
+                ser.write("\n\rUltimo valor:\n\r");
+                ser.write("\r"+sample+"\n\r")
         elif byte == "2":
                 # Apresenta todas amostras armazenadas no log
-                ser.write("\n\rOs valores armazenados sao:"+"\n")
+                ser.write("\n\rOs valores armazenados sao:"+"\n\r")
                 # Aponta para o comeco do arquivo
                 file.seek(0, 0)
                 # Faz varredura das linhas imprimindo
                 for line in file:
-                        ser.write("\r"+line)
+                        ser.write("\r"+line+"\r")
         elif byte == "3":
                 # Sair do script
-                ser.write("\n\rSaindo..."+"\n")
+                ser.write("\n\rSaindo..."+"\n\r")
                 file.close()
                 exit()
         elif len(byte) != 0:
                 # Verifica se chegou comando invalido
-                ser.write("\n\rComando invalido!"+"\n")
+                ser.write("\n\rComando invalido!"+"\n\r")
 
 def get_date():
         # Verifica a data atual
@@ -50,7 +50,7 @@ def store_sample(sample):
         file.seek(0, 2)
         # Armazena a amostra
         file.write(sample + '\n')
-        
+
         #main
 if __name__ == "__main__":
         # Inicializa a serial 115200 @ tty04
